@@ -6,11 +6,11 @@ const Product = ({ product }) => {
   return (
     <div>
       <Card className='my-3 p-3 rounded'> 
-        <a href={`/product/${product.id}`}>
+        <a href={`/product/${product._id}`}>
           <Card.Img src={product.image} />
         </a>
         <Card.Body>
-        <a href={`/product/${product.id}`}>
+        <a href={`/product/${product._id}`}>
           <Card.Title as='div'>
             <strong style={{color: "rgb(50, 100, 150)"}}>{product.name}</strong>      
           </Card.Title>

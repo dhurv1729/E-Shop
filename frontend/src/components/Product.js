@@ -5,9 +5,9 @@ import Rating from '../components/Rating'
 const Product = ({ product }) => {
   return (
     <div>
-      <Card className='my-3 p-3 rounded'> 
+      <Card className='my-3 p-3 rounded' style={{height: "325px"}}> 
         <a href={`/product/${product._id}`}>
-          <Card.Img src={product.image} />
+          <Card.Img src={product.image}  style={{width: "auto", height: "150px"}} />
         </a>
         <Card.Body>
         <a href={`/product/${product._id}`}>
@@ -21,7 +21,7 @@ const Product = ({ product }) => {
         </Card.Text>
 
         <Card.Text as='h5'>
-          ${product.price}
+        &#8377;{product.price}
         </Card.Text>
 
         </Card.Body>

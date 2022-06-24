@@ -6,15 +6,6 @@ const userSchema = mongoose.Schema({
     email: {type: String, required: true, unique: true },
     password: {type: String, required: true},
     isAdmin: {type: Boolean, required: true, default: false},
-    cart: [
-        {
-            name: { type: String, required: true},
-            qty: { type: Number, required: true},
-            image: { type: String, required: true},
-            price: { type: Number, required: true},
-        }
-    ]
-
 },{
     timestamps: true
 })

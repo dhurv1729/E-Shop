@@ -10,8 +10,8 @@ const Rating = ({ value, text }) => {
         <i style={{color:"rgb(200, 200, 26)"}} className={value >= 4 ? 'fas fa-star' : value >= 3.5 ? 'fas fa-star-half-alt' : 'far fa-star'}></i>
         <i style={{color:"rgb(200, 200, 26)"}} className={value >= 5 ? 'fas fa-star' : value >= 4.5 ? 'fas fa-star-half-alt' : 'far fa-star'}></i>
       </span>
-      &nbsp; &nbsp; 
-      <span>{text} Reviews</span>
+      &nbsp; 
+      <span style={{"font-size": "0.9rem"}}>{text} Reviews</span>
     </div>
   );
 }

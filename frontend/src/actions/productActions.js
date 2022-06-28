@@ -3,8 +3,8 @@ import axios from "axios";
 
 export const listProducts = () => async (dispatch) => {
   try {
-    dispatch({ type: 'PRODUCT_LIST_REQUEST' })
 
+    dispatch({ type: 'PRODUCT_LIST_REQUEST' })
     const { data } = await axios.get('/api/products')
 
     dispatch({
@@ -21,6 +21,7 @@ export const listProducts = () => async (dispatch) => {
 
 export const listProduct = (id) => async (dispatch) => {
   try {
+
     dispatch({ type: 'PRODUCT_DETAIL_REQUEST' })
 
     const { data } = await axios.get(`/api/products/${id}`)

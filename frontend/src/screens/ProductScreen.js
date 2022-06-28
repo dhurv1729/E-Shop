@@ -43,7 +43,7 @@ const ProductScreen = ({ match }) => {
         error
       ) : product ? (
         <Row>
-          <Col md={5}>
+          <Col md={5} >
             <Image
               src={product.image}
               fluid
@@ -51,6 +51,9 @@ const ProductScreen = ({ match }) => {
                 width: "350px",
                 height: "350px",
                 "object-fit": "contain",
+                "display": "block", 
+                "margin-left": "auto", 
+                "margin-right": "auto"
               }}
             ></Image>
           </Col>
@@ -64,24 +67,24 @@ const ProductScreen = ({ match }) => {
             </ListGroup.Item>
             <ListGroup.Item>
               <Row>
-                <Col>Brand: </Col>
+                <Col style={{"font-weight": "600"}}>Brand: </Col>
                 <Col>{product.brand}</Col>
               </Row>
             </ListGroup.Item>
-            <ListGroup.Item>Description: {product.description}</ListGroup.Item>
+            <ListGroup.Item> <div style={{"font-weight": "600"}}>About this product:</div>  {product.description}</ListGroup.Item>
           </Col>
 
           <Col md={3}>
             <Card>
               <ListGroup.Item variant="flush">
                 <Row>
-                  <Col>Price:</Col>
+                  <Col style={{"font-weight": "600"}}>Price:</Col>
                   <Col>&#8377;{product.price}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Stoke:</Col>
+                  <Col style={{"font-weight": "600"}}>Stoke:</Col>
                   <Col>
                     {product.countInStock > 0 ? "In Stock" : "Out of Stoke"}
                   </Col>
@@ -91,7 +94,7 @@ const ProductScreen = ({ match }) => {
               {product.countInStock > 0 && (
                 <ListGroup.Item>
                   <Row>
-                    <Col>Qty</Col>
+                    <Col style={{"font-weight": "600"}}>Qty</Col>
                     <Col>
                       <Form.Control
                         as="select"

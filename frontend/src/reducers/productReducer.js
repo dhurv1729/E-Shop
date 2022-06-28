@@ -13,7 +13,7 @@ export const productListReducer = (state = { products: []}, action) => {
 
 export const productDetailReducer = (state = { products: { reviews: [] }}, action) => {
   if(action.type == 'PRODUCT_DETAIL_REQUEST') {
-    return {loading: true, ...state}
+    return {...state, loading: true}
   }
   else if(action.type == 'PRODUCT_DETAIL_SUCCESS') {
     return {loading: false, product: action.payload}
@@ -22,4 +22,5 @@ export const productDetailReducer = (state = { products: { reviews: [] }}, actio
     return {loading: false, error: action.payload}
   }
   else return state;
+
 }

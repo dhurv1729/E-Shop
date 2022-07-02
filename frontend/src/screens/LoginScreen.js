@@ -45,7 +45,6 @@ const LoginScreen = () => {
 
 
       {error && <Message variant='danger'>{error}</Message>}
-      {(!loading && userInfo) && 'Hello there'}  
       {loading && 'Loading'}
 
       <Form onSubmit={submitHandler}>
@@ -72,7 +71,7 @@ const LoginScreen = () => {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button variant="success" type="submit">
           Sing In
         </Button>
       </Form>
@@ -80,7 +79,7 @@ const LoginScreen = () => {
       <Row className="py-3">
         <Col>
           New Costmer?{' '}
-          <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>
+          <Link to={redirect ? `/register?redirect=${redirect}` : '/register'} className='text-success'>
             Register
           </Link>
         </Col>

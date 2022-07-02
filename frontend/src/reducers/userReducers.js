@@ -37,6 +37,9 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
   else if(action.type == 'USER_DETAILS_FAIL') {
     return {loading: false, error: action.payload }
   }
+  else if(action.type == 'USER_DETAILS_RESET') {
+    return {loading: false, user: {} }
+  }
   else return state;
 } 
 
@@ -49,6 +52,51 @@ export const userUpdateProfileReducer = (state = { }, action) => {
   }
   else if(action.type == 'USER_UPDATE_PROFILE_FAIL') {
     return {loading: false, error: action.payload }
+  }
+  else return state;
+} 
+
+export const userListReducer = (state = { users: [] }, action) => {
+  if(action.type == 'USER_LIST_REQUEST') {
+    return {loading: true}
+  }
+  else if(action.type == 'USER_LIST_SUCCESS') {
+    return {loading: false, users: action.payload }
+  }
+  else if(action.type == 'USER_LIST_FAIL') {
+    return {loading: false, error: action.payload }
+  }
+  else if(action.type == 'USER_LIST_RESET') {
+    return {loading: false, users: [] }
+  }
+  else return state;
+} 
+
+export const userDeleteReducer = (state = { users: [] }, action) => {
+  if(action.type == 'USER_DELETE_REQUEST') {
+    return {loading: true}
+  }
+  else if(action.type == 'USER_DELETE_SUCCESS') {
+    return {loading: false, success: true }
+  }
+  else if(action.type == 'USER_DELETE_FAIL') {
+    return {loading: false, error: action.payload }
+  }
+  else return state;
+} 
+
+export const userUpdateReducer = (state = { users: {} }, action) => {
+  if(action.type == 'USER_UPDATE_REQUEST') {
+    return {loading: true}
+  }
+  else if(action.type == 'USER_UPDATE_SUCCESS') {
+    return {loading: false, success: true }
+  }
+  else if(action.type == 'USER_UPDATE_FAIL') {
+    return {loading: false, error: action.payload }
+  }
+  else if(action.type == 'USER_UPDATE_RESET') {
+    return { user: {} }
   }
   else return state;
 } 

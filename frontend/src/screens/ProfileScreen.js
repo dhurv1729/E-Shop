@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Message from '../components/Message'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import { Form, Button, Row, Col, Table } from 'react-bootstrap'
 import { getUserDetails,updateUserDetails } from '../actions/userAction'
 import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../components/FromContainer'
+import { lsitMyOrders } from '../actions/orderActions'
 
 const ProfileScreen = () => {
   const [name, setName] = useState('')
@@ -22,13 +23,18 @@ const ProfileScreen = () => {
   const { user, loading, error} = useSelector((state) => state.userDetails)
   const { success } = useSelector((state) => state.userUpdateProfile)
 
+  const {orders, loading: loadingOrders, error: errorOrders } = useSelector(state => state.orderMyList)
+
   useEffect(() => {
     if (!userInfo) {
       nevigate('/login')
     }
+
+
     else {
       if(!user.name) {
         dispatch(getUserDetails('profile'));
+        dispatch(lsitMyOrders()); 
       }
       else {
         setName(user.name);
@@ -100,11 +106,41 @@ const ProfileScreen = () => {
             />
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button variant="success" type="submit">
             Update
           </Button>
         </Form>
       </Col>
+
+      <Col md={8}>
+        <h1 style={{"text-align": "center"}}>My Orders</h1>
+        {loadingOrders ? 'Loading Orders' : errorOrders ? <Message variant='danger'>{errorOrders}</Message> : (
+          <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>DATE</th>
+              <th>TOTAL</th>
+              <th>PAID</th>
+              <th>DELIVERED</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {orders.map(order => (
+              <tr>
+                <td><Link to={`/order/${order._id}`}>{order._id}</Link></td>
+                <td>{order.createdAt}</td>
+                <td>{order.totalPrice}</td>
+                <td>{order.isPaid ? order.paidAt : 'Not Paid'}</td>
+                <td>{order.isDelivered ? order.deliveredAt : 'Not Delivered'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+        )}
+      </Col>
+
     </Row>
   )
 }

@@ -1,35 +1,43 @@
-import React, { useEffect } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Row, Col, Card, Button, Form, ListGroup, Image } from 'react-bootstrap'
-import { addToCart, removeFromCart } from '../actions/cartActions'
-import { useSelector, useDispatch } from 'react-redux'
-import { useParams } from 'react-router'
-import Message from '../components/Message'
+import React, { useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import {
+  Row,
+  Col,
+  Card,
+  Button,
+  Form,
+  ListGroup,
+  Image,
+} from "react-bootstrap";
+import { addToCart, removeFromCart } from "../actions/cartActions";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router";
+import Message from "../components/Message";
 
 const CartScreen = () => {
-  const params = useParams()
-  const location = useLocation()
-  const productId = params.id
-  const qty = location.search ? Number(location.search.split('=')[1]) : 1
+  const params = useParams();
+  const location = useLocation();
+  const productId = params.id;
+  const qty = location.search ? Number(location.search.split("=")[1]) : 1;
   const nevigate = useNavigate();
-  const cart = useSelector((state) => state.cart)
-  const { cartItems } = cart
-  const dispatch = useDispatch()
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (productId) {
-      dispatch(addToCart(productId, qty))
+      dispatch(addToCart(productId, qty));
     }
-  }, [dispatch, productId, qty])
+  }, [dispatch, productId, qty]);
 
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
-  }
+  };
 
   const checkOutHandler = () => {
-    console.log('inside cheackout');
-    nevigate('/login?redirect=shipping'); 
-  }
+    console.log("inside cheackout");
+    nevigate("/login?redirect=shipping");
+  };
 
   return (
     <Row>
@@ -37,7 +45,7 @@ const CartScreen = () => {
         <h1>Shopping Cart</h1>
         {cartItems.length == 0 ? (
           <Message>
-            Your cart is empty &nbsp; <Link to={'/'}>Go Back</Link>
+            Your cart is empty &nbsp; <Link to={"/"}>Go Back</Link>
           </Message>
         ) : (
           <ListGroup.Item varient="flush">
@@ -47,9 +55,9 @@ const CartScreen = () => {
                   <Image
                     src={item.image}
                     style={{
-                      width: '70px',
-                      height: '70px',
-                      'object-fit': 'contain',
+                      width: "70px",
+                      height: "70px",
+                      "object-fit": "contain",
                     }}
                     fluid
                     rounded
@@ -64,7 +72,7 @@ const CartScreen = () => {
                     as="select"
                     value={item.qty}
                     onChange={(e) => {
-                      dispatch(addToCart(item.product, e.target.value))
+                      dispatch(addToCart(item.product, e.target.value));
                     }}
                   >
                     {[...Array(item.countInStock).keys()].map((x) => (
@@ -75,18 +83,21 @@ const CartScreen = () => {
                   </Form.Control>
                 </Col>
                 <Col md={2}>
-                  <Button type="button" variant="light" onClick={() => removeFromCartHandler(item.product)}>
-                    {' '}
+                  <Button
+                    type="button"
+                    variant="light"
+                    onClick={() => removeFromCartHandler(item.product)}
+                  >
+                    {" "}
                     <i className="fas fa-trash"></i>
                   </Button>
                 </Col>
 
-                {cartItems[cartItems.length-1].product != item.product && (<hr></hr>)}
-
+                {cartItems[cartItems.length - 1].product != item.product && (
+                  <hr></hr>
+                )}
               </Row>
-
-            ))
-            }
+            ))}
           </ListGroup.Item>
         )}
       </Col>
@@ -100,27 +111,28 @@ const CartScreen = () => {
                 {cartItems.reduce((acc, item) => acc + Number(item.qty), 0)})
                 items
               </h2>
-              &#8377;{' '}
+              &#8377;{" "}
               {cartItems.reduce(
                 (acc, item) => acc + Number(item.qty) * Number(item.price),
-                0,
+                0
               )}
             </ListGroup.Item>
             <ListGroup.Item>
-              <Button
-                type="button"
-                className="btn btn-block"
-                disabled={cartItems.length == 0}
-                onClick={() => checkOutHandler}
-              >
-                Proceed To Cheakout
-              </Button>
+              <div className="d-grid gap-2">
+                <button
+                  className="btn btn-primary mx-2"
+                  type="button"
+                  onSubmit={checkOutHandler}
+                >
+                  Procced To Checkout
+                </button>
+              </div>
             </ListGroup.Item>
           </ListGroup>
         </Card>
       </Col>
     </Row>
-  )
-}
+  );
+};
 
-export default CartScreen
+export default CartScreen;

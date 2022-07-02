@@ -114,15 +114,17 @@ const ProductScreen = ({ match }) => {
                 </ListGroup.Item>
               )}
 
-              <ListGroup.Item className="m-auto">
-                <Button
-                  onClick={addToCartHandler}
-                  className="btn-block"
+              <ListGroup.Item>
+              <div className="d-grid gap-2">
+                <button
+                  className="btn btn-success mx-2"
                   type="button"
                   disabled={product.countInStock == 0}
+                  onClick={addToCartHandler}
                 >
-                  Add to cart
-                </Button>
+                  Add To Cart
+                </button>
+              </div>
               </ListGroup.Item>
             </Card>
           </Col>

@@ -14,7 +14,7 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar className="navbar navbar-expand-lg navbar-dark bg-primary" style={{"background-color": "black"}}>
+      <Navbar className="navbar navbar-expand-lg navbar-dark bg-success" style={{"background-color": "black"}}>
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>Eshop</Navbar.Brand>
@@ -43,6 +43,21 @@ const Header = () => {
                 <i className="fas fa-user"></i>&nbsp;&nbsp;Sing in
               </Nav.Link>
             </LinkContainer>
+            )}
+
+            {userInfo && userInfo.isAdmin && (
+               <NavDropdown title='Admin' id='adminMenu'>
+               <LinkContainer to='/admin/userslist'>
+                 <NavDropdown.Item>Users</NavDropdown.Item>
+               </LinkContainer>
+               <LinkContainer to='/admin/orderslist'>
+                 <NavDropdown.Item>Orders</NavDropdown.Item>
+               </LinkContainer>               
+               <LinkContainer to='/admin/productslist'>
+                 <NavDropdown.Item>Products </NavDropdown.Item>
+               </LinkContainer>
+
+             </NavDropdown>
             )}
 
             

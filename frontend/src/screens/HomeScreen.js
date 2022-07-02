@@ -23,9 +23,9 @@ const HomeScreen = () => {
         <h1>Latest Products</h1>
 
         {loading ? 'Loading' : error ? error : 
-        <Row className='row-cols-5'>
+        <Row >
           {products.map(product => (
-            <Col >
+            <Col md={2}>
               <Product product={product}/>
             </Col>
           ))}

@@ -24,3 +24,17 @@ export const productDetailReducer = (state = { products: { reviews: [] }}, actio
   else return state;
 
 }
+
+export const productDeleteReducer = (state = { products: { reviews: [] }}, action) => {
+  if(action.type == 'PRODUCT_DELETE_REQUEST') {
+    return {...state, loading: true}
+  }
+  else if(action.type == 'PRODUCT_DELETE_SUCCESS') {
+    return {loading: false, success: true}
+  }
+  else if(action.type == 'PRODUCT_DELETE_FAIL') {
+    return {loading: false, error: action.payload}
+  }
+  else return state;
+
+}

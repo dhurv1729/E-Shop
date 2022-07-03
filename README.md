@@ -20,3 +20,11 @@
 - [x] Admin can edit the costmer information and can delete the costmer
 - [x] Admin can Edit/ create/ delete the product information
 - [x] Admin can do "Mark as Paid", "Mark as Delivered" to a particular order
+
+## Technology Used:
+
+[] MongoDB
+[] React
+[] React-Bootstrap
+[] React-Redux
+[] Node(express)

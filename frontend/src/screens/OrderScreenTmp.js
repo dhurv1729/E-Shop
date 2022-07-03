@@ -78,9 +78,17 @@ const OrderScreen = () => {
                   </p>
                   <p>
                     {order.isPaid ? (
-                      <Message variant="success">
-                        Paid On {order.paidAt}
-                      </Message>
+                      <Row>
+                        <Col md={8}>
+                          <Message variant="success">
+                            Paid On {order.paidAt}
+                          </Message>
+                        </Col>
+                        <Col md={4}>
+                          <Button className='btn-primary'>mark as paid</Button>
+                        </Col>
+                      </Row>
+                      
                     ) : (
                       <Message variant="danger">Not Paid</Message>
                     )}

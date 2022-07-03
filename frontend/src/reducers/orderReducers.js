@@ -40,6 +40,22 @@ export const orderPayReducer = (state = { }, action) => {
   else return state
 }
 
+export const orderDeliverReducer = (state = { }, action) => {
+  if(action.type == 'ORDER_DELIVER_REQUEST') {
+    return {loading: true}
+  }
+  else if(action.type == 'ORDER_DELIVER_SUCCESS') {
+    return {loading: false, success: true}
+  }
+  else if(action.type == 'ORDER_DELIVER_FAIL') {
+    return {lodaing: false, error: action.payload}
+  }
+  else if(action.type == 'ORDER_DELIVER_RESET') {
+    return {}
+  }
+  else return state
+}
+
 export const orderMyListReducer = (state = { orders: []}, action) => {
   if(action.type == 'ORDER_LIST_MY_REQUEST') {
     return {loading: true}
@@ -51,6 +67,22 @@ export const orderMyListReducer = (state = { orders: []}, action) => {
     return {lodaing: false, error: action.payload}
   }
   else if(action.type == 'ORDER_LIST_MY_RESET') {
+    return {lodaing: false, orders: []}
+  }
+  else return state
+}
+
+export const orderListReducer = (state = { orders: []}, action) => {
+  if(action.type == 'ORDER_LIST_REQUEST') {
+    return {loading: true}
+  }
+  else if(action.type == 'ORDER_LIST_SUCCESS') {
+    return {loading: false, orders: action.payload}
+  }
+  else if(action.type == 'ORDER_LIST_FAIL') {
+    return {lodaing: false, error: action.payload}
+  }
+  else if(action.type == 'ORDER_LIST_RESET') {
     return {lodaing: false, orders: []}
   }
   else return state

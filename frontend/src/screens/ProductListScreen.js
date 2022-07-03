@@ -6,7 +6,7 @@ import { getUserList } from "../actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { deleteUser } from "../actions/userAction";
-import { listProducts, deleteProduct } from "../actions/productActions";
+import { listProducts, deleteProduct, createProduct, listProduct } from "../actions/productActions";
 
 const ProductListScreen = () => {
 
@@ -15,20 +15,39 @@ const ProductListScreen = () => {
   const { userInfo } = useSelector(state => state.userLogin)
   const navigate = useNavigate()
 
-  const { success } = useSelector(state => state.productDelete)
-  useEffect(() => {
-    if(userInfo && userInfo.isAdmin) dispatch(listProducts());
-    else navigate('/login')
-  }, [dispatch, success]);
 
+  const { product, error: errorCreate, success: successCreate } = useSelector(state => state.productCreate)
+
+
+  const { success } = useSelector(state => state.productDelete)
+
+  useEffect(() => {
+    dispatch({type: 'PRODUCT_CREATE_RESET'});
+    if(!userInfo.isAdmin) { navigate('/login') }
+    else {
+      if(successCreate) { navigate(`/admin/product/edit/${product._id}`)}
+      else dispatch(listProducts())
+    }
+  }, [dispatch, success, product, successCreate, userInfo]);
+ 
 
   const deleteHandler = (id) => {
     dispatch(deleteProduct(id))
   };
 
+
+
+  const createProductHandler = () => {
+    dispatch(createProduct());
+  }
+
+
   return (
     <div>
       <h1>Products</h1>
+      <p style={{"text-align": "right"}}>
+        <Button className="btn btn-dark mb-3" onClick={createProductHandler}>Create New</Button>
+      </p>
       {loading ? (
         "Loading Users"
       ) : error ? (
@@ -54,7 +73,7 @@ const ProductListScreen = () => {
                 <td>{product.brand}</td>
                
                 <td>
-                  <LinkContainer to={`/product/edit/${product._id}`}>
+                  <LinkContainer to={`/admin/product/edit/${product._id}`}>
                     <Button variant="light" className="btn-sm">
                       <i className="fas fa-edit"></i>
                     </Button>

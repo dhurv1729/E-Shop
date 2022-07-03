@@ -5,7 +5,7 @@ import { Form, Button, Row, Col, Table } from 'react-bootstrap'
 import { getUserDetails,updateUserDetails } from '../actions/userAction'
 import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../components/FromContainer'
-import { lsitMyOrders } from '../actions/orderActions'
+import { listMyOrders } from '../actions/orderActions'
 
 const ProfileScreen = () => {
   const [name, setName] = useState('')
@@ -34,7 +34,7 @@ const ProfileScreen = () => {
     else {
       if(!user.name) {
         dispatch(getUserDetails('profile'));
-        dispatch(lsitMyOrders()); 
+        dispatch(listMyOrders()); 
       }
       else {
         setName(user.name);

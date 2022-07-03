@@ -15,7 +15,9 @@ import OrderScreen from './screens/OrderScreen';
 import OrderScreenTmp from './screens/OrderScreenTmp';
 import UserListScreen from './screens/UserListScreen';
 import ProductListScreen from './screens/ProductListScreen';
+import OrderListScreen from './screens/OrderListScreen';
 import UserEditScreen from './screens/UserEditScreen';
+import ProductEditScreen from './screens/ProductEditScreen';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Container } from 'react-bootstrap';
 
@@ -40,6 +42,8 @@ function App() {
           <Route path="/user/edit/:id" element={<UserEditScreen/>}/>
           <Route path="/admin/userslist" element={<UserListScreen/>}/>
           <Route path="/admin/productslist" element={<ProductListScreen/>}/>
+          <Route path="/admin/orderslist" element={<OrderListScreen/>}/>
+          <Route path="/admin/product/edit/:id" element={<ProductEditScreen/>}/>
         </Routes>
       </Container>
       </main>

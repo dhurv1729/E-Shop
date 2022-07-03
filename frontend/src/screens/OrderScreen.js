@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { Button, Row, Col, Image, ListGroup, Card } from "react-bootstrap";
+import {
+  Button,
+  Row,
+  Col,
+  Image,
+  ListGroup,
+  Card,
+  ListGroupItem,
+} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
-import { getOrderDetails, payOrder } from "../actions/orderActions";
+import { getOrderDetails, payOrder, deliverOrder } from "../actions/orderActions";
 import axios from "axios";
 
 const OrderScreen = () => {
@@ -15,18 +23,24 @@ const OrderScreen = () => {
 
   const params = useParams();
 
-  ;
+  const {success: successPaid } = useSelector(state => state.orderPay)
+  const {success: successDeliver } = useSelector(state => state.orderDeliver)
+  const {userInfo } = useSelector(state => state.userLogin)
 
   useEffect(() => {
-    
-    dispatch(getOrderDetails(params.id))
+    dispatch(getOrderDetails(params.id));
+  }, [dispatch, params.id, successDeliver, successPaid]);
 
-  }, [dispatch, params.id]);
+  
 
-  const successPaymentHandler = (paymentResult) => {
-    console.log(paymentResult);
-    dispatch(payOrder(params.id, paymentResult));
-  };
+  const paidHandler = () => {
+    dispatch(payOrder(order._id))
+  }
+
+  const deliveredHandler = () => {
+    dispatch(deliverOrder(order._id))
+  }
+
 
   return (
     <div>
@@ -175,6 +189,33 @@ const OrderScreen = () => {
                     {error && <Message>{error}</Message>}{" "}
                   </ListGroup.Item>
 
+                  {!order.isPaid && userInfo.isAdmin &&(
+                    <ListGroup.Item>
+                      <div className="d-grid gap-2">
+                        <button
+                          className="btn btn-success mx-2"
+                          type="button"
+                          onClick={paidHandler}
+                        >
+                          Mark as Paid
+                        </button>
+                      </div>
+                    </ListGroup.Item>
+                  )}
+
+                  {!order.isDelivered && userInfo.isAdmin &&  (
+                    <ListGroup.Item>
+                      <div className="d-grid gap-2">
+                        <button
+                          className="btn btn-success mx-2"
+                          type="button"
+                          onClick={deliveredHandler}
+                        >
+                          Mark as Delivered
+                        </button>
+                      </div>
+                    </ListGroup.Item>
+                  )}
                 </ListGroup>
               </Card>
             </Col>

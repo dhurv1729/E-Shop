@@ -12,7 +12,7 @@ const ShippingScreen = () => {
   const { shippingAddress } = useSelector((state) => state.cart);
   const nevigate = useNavigate();
 
-  const [paymentMethod, setPaymentMethod] = useState("PayPal");
+  const [paymentMethod, setPaymentMethod] = useState("Case On Delivery");
 
   useEffect(() => {
     if (!shippingAddress) {
@@ -38,10 +38,10 @@ const ShippingScreen = () => {
             checked
             className="mb-4"
             type="radio"
-            label="Paypal or Credit card"
+            label="Case On Delivery"
             id="Paypal or Credit card"
             name="paymentMethod"
-            value="PayPal"
+            value="Case On Delivery"
             onChange={(e) => setPaymentMethod(e.target.value)}
           />
 

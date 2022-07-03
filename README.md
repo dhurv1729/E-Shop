@@ -23,8 +23,8 @@
 
 ## Technology Used:
 
-- [] MongoDB
-- [] React
-- [] React-Bootstrap
-- [] React-Redux
-- [] Node(express)
+- MongoDB
+- React
+- React-Bootstrap
+- React-Redux
+- Node(express)

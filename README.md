@@ -1,8 +1,8 @@
 # E-shop
 
-[Youtube](https://www.youtube.com/watch?v=ad-diUBjkHo)pa,
+[Youtube](https://www.youtube.com/watch?v=ad-diUBjkHo)
 
-## customer functionality
+## Customer functionality
 
 - [] Search Bar
 - [x] Product Quick view

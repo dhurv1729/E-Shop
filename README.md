@@ -17,6 +17,6 @@
 
 ## Admin functionality
 
-[x] Admin can edit the costmer information and can delete the costmer
-[x] Admin can Edit/ create/ delete the product information
-[x] Admin can do "Mark as Paid", "Mark as Delivered" to a particular order
+- [x] Admin can edit the costmer information and can delete the costmer
+- [x] Admin can Edit/ create/ delete the product information
+- [x] Admin can do "Mark as Paid", "Mark as Delivered" to a particular order
